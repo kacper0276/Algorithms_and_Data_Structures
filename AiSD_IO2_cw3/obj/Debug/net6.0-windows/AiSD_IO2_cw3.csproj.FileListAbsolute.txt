@@ -1,0 +1,17 @@
+D:\169487\AiSD_IO2_cw3\bin\Debug\net6.0-windows\AiSD_IO2_cw3.exe
+D:\169487\AiSD_IO2_cw3\bin\Debug\net6.0-windows\AiSD_IO2_cw3.deps.json
+D:\169487\AiSD_IO2_cw3\bin\Debug\net6.0-windows\AiSD_IO2_cw3.runtimeconfig.json
+D:\169487\AiSD_IO2_cw3\bin\Debug\net6.0-windows\AiSD_IO2_cw3.dll
+D:\169487\AiSD_IO2_cw3\bin\Debug\net6.0-windows\AiSD_IO2_cw3.pdb
+D:\169487\AiSD_IO2_cw3\obj\Debug\net6.0-windows\AiSD_IO2_cw3.csproj.AssemblyReference.cache
+D:\169487\AiSD_IO2_cw3\obj\Debug\net6.0-windows\AiSD_IO2_cw3.Form1.resources
+D:\169487\AiSD_IO2_cw3\obj\Debug\net6.0-windows\AiSD_IO2_cw3.csproj.GenerateResource.cache
+D:\169487\AiSD_IO2_cw3\obj\Debug\net6.0-windows\AiSD_IO2_cw3.GeneratedMSBuildEditorConfig.editorconfig
+D:\169487\AiSD_IO2_cw3\obj\Debug\net6.0-windows\AiSD_IO2_cw3.AssemblyInfoInputs.cache
+D:\169487\AiSD_IO2_cw3\obj\Debug\net6.0-windows\AiSD_IO2_cw3.AssemblyInfo.cs
+D:\169487\AiSD_IO2_cw3\obj\Debug\net6.0-windows\AiSD_IO2_cw3.csproj.CoreCompileInputs.cache
+D:\169487\AiSD_IO2_cw3\obj\Debug\net6.0-windows\AiSD_IO2_cw3.dll
+D:\169487\AiSD_IO2_cw3\obj\Debug\net6.0-windows\refint\AiSD_IO2_cw3.dll
+D:\169487\AiSD_IO2_cw3\obj\Debug\net6.0-windows\AiSD_IO2_cw3.pdb
+D:\169487\AiSD_IO2_cw3\obj\Debug\net6.0-windows\AiSD_IO2_cw3.genruntimeconfig.cache
+D:\169487\AiSD_IO2_cw3\obj\Debug\net6.0-windows\ref\AiSD_IO2_cw3.dll
