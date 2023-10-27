@@ -139,21 +139,90 @@ namespace AiSD_IO2_cw4
             return seconds;
         }
 
-        public void MergeSort(List<int> arr)
+        public void Merge(List<int> arr, List<int> arr1, List<int> result)
         {
-            DateTime timeStart = DateTime.Now;
-            int avg = arr.Count / 2;
-            int restAvg = avg + 1;
-            int size = arr.Count;
+            result.Clear();
+            int a = 0, b = 0;
+            while(a < arr.Count && b < arr1.Count)
+            {
+                if(arr.ElementAt(a) > arr1.ElementAt(b))
+                {
+                    result.Add(arr1.ElementAt(b));
+                    b++;
+                } else
+                {
+                    result.Add(arr.ElementAt(a));
+                    a++;
+                }
+            }
 
-            List<int> list1 = new List<int>();
-            List<int> list2 = new List<int>();
-        }
+            while(a < arr.Count)
+            {
+                result.Add(arr.ElementAt(a));
+                a++;
+            }
 
-        public void QuickSort(List<int> arr)
+            while (b < arr1.Count)
+            {
+                result.Add(arr1.ElementAt(b));
+                b++;
+            }
+        } 
+
+        public double MergeSort(List<int> arr)
         {
             DateTime timeStart = DateTime.Now;
             
+            int half = arr.Count / 2;
+
+            List<int> left = arr.GetRange(0, half);
+            List<int> right = arr.GetRange(half, arr.Count - half);
+
+            SortFun(left);
+            SortFun(right);
+
+            Merge(left, right, arr);
+
+            DateTime timeEnd = DateTime.Now;
+            TimeSpan time = timeEnd - timeStart;
+            var seconds = time.TotalMilliseconds;
+            return seconds;
+        }
+
+        public int SortQuick(List<int> arr, int low, int hight)
+        {
+            int pivot = arr.ElementAt(hight);
+
+            int i = low - 1;
+
+            for(int j = low; j <= hight - 1; j++)
+            {
+                if(arr.ElementAt(j) < pivot)
+                {
+                    i++;
+                    Swap(arr, i, j);
+                }
+            }
+            Swap(arr, i + 1, hight);
+            return i + 1;
+        }
+
+        public double QuickSort(List<int> arr, int low, int hight)
+        {
+            DateTime timeStart = DateTime.Now;
+            
+            if(low < hight)
+            {
+                int pozycja = SortQuick(arr, low, hight);
+
+                QuickSort(arr, low, pozycja - 1);
+                QuickSort(arr, pozycja + 1, hight);
+            }
+
+            DateTime timeEnd = DateTime.Now;
+            TimeSpan time = timeEnd - timeStart;
+            var seconds = time.TotalMilliseconds;
+            return seconds;
         }
 
         // Bubbling sort Button
@@ -248,7 +317,7 @@ namespace AiSD_IO2_cw4
             {
                 List<int> list = GetList(separator);
 
-                double time = InsertionSort(list);
+                double time = MergeSort(list);
 
                 string res = ResultAsString(list);
 
@@ -268,12 +337,12 @@ namespace AiSD_IO2_cw4
             {
 
                 List<int> list = GetList(separator);
-                QuickSort(list);
-
+                int size = list.Count - 1;
+                double time = QuickSort(list, 0 , size);
 
                 string res = ResultAsString(list);
 
-                //timeLabel.Text = time + "ms";
+                timeLabel.Text = time + "ms";
                 wynik.Text = res;
             }
             else
