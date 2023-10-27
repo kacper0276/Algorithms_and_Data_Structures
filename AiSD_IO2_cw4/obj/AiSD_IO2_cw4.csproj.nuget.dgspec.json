@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\169487\\AiSD_IO2_cw4\\AiSD_IO2_cw4.csproj": {}
+    "C:\\Users\\kacpe\\Desktop\\Zadanie AiDS\\Algorytmy_I_Struktury_Danych\\AiSD_IO2_cw4\\AiSD_IO2_cw4.csproj": {}
   },
   "projects": {
-    "D:\\169487\\AiSD_IO2_cw4\\AiSD_IO2_cw4.csproj": {
+    "C:\\Users\\kacpe\\Desktop\\Zadanie AiDS\\Algorytmy_I_Struktury_Danych\\AiSD_IO2_cw4\\AiSD_IO2_cw4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\169487\\AiSD_IO2_cw4\\AiSD_IO2_cw4.csproj",
+        "projectUniqueName": "C:\\Users\\kacpe\\Desktop\\Zadanie AiDS\\Algorytmy_I_Struktury_Danych\\AiSD_IO2_cw4\\AiSD_IO2_cw4.csproj",
         "projectName": "AiSD_IO2_cw4",
-        "projectPath": "D:\\169487\\AiSD_IO2_cw4\\AiSD_IO2_cw4.csproj",
-        "packagesPath": "C:\\Users\\local\\.nuget\\packages\\",
-        "outputPath": "D:\\169487\\AiSD_IO2_cw4\\obj\\",
+        "projectPath": "C:\\Users\\kacpe\\Desktop\\Zadanie AiDS\\Algorytmy_I_Struktury_Danych\\AiSD_IO2_cw4\\AiSD_IO2_cw4.csproj",
+        "packagesPath": "C:\\Users\\kacpe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kacpe\\Desktop\\Zadanie AiDS\\Algorytmy_I_Struktury_Danych\\AiSD_IO2_cw4\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\local\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kacpe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

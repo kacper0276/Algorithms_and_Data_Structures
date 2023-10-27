@@ -28,171 +28,166 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.wynik = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.generateNumber = new System.Windows.Forms.NumericUpDown();
-            this.generateButton = new System.Windows.Forms.Button();
-            this.timeLabel = new System.Windows.Forms.Label();
-            this.sortInsert = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.separatorSelected = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.generateNumber)).BeginInit();
-            this.SuspendLayout();
+            textBox1 = new TextBox();
+            button1 = new Button();
+            wynik = new TextBox();
+            button2 = new Button();
+            checkBox1 = new CheckBox();
+            generateNumber = new NumericUpDown();
+            generateButton = new Button();
+            timeLabel = new Label();
+            sortInsert = new Button();
+            button5 = new Button();
+            quickSortButton = new Button();
+            separatorSelected = new ComboBox();
+            label2 = new Label();
+            ((System.ComponentModel.ISupportInitialize)generateNumber).BeginInit();
+            SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(165, 143);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 0;
+            textBox1.Location = new Point(165, 143);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 23);
+            textBox1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(221, 351);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "SB";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            button1.Location = new Point(221, 351);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 1;
+            button1.Text = "SB";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // wynik
             // 
-            this.wynik.Location = new System.Drawing.Point(165, 274);
-            this.wynik.Name = "wynik";
-            this.wynik.Size = new System.Drawing.Size(100, 23);
-            this.wynik.TabIndex = 2;
+            wynik.Location = new Point(165, 274);
+            wynik.Name = "wynik";
+            wynik.Size = new Size(100, 23);
+            wynik.TabIndex = 2;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(140, 351);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "SS";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            button2.Location = new Point(140, 351);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 3;
+            button2.Text = "SS";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // checkBox1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(316, 145);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(136, 19);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Lewa strona aktywna";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(316, 145);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(136, 19);
+            checkBox1.TabIndex = 4;
+            checkBox1.Text = "Lewa strona aktywna";
+            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // generateNumber
             // 
-            this.generateNumber.Location = new System.Drawing.Point(458, 143);
-            this.generateNumber.Maximum = new decimal(new int[] {
-            2000000,
-            0,
-            0,
-            0});
-            this.generateNumber.Name = "generateNumber";
-            this.generateNumber.Size = new System.Drawing.Size(120, 23);
-            this.generateNumber.TabIndex = 5;
+            generateNumber.Location = new Point(458, 143);
+            generateNumber.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
+            generateNumber.Name = "generateNumber";
+            generateNumber.Size = new Size(120, 23);
+            generateNumber.TabIndex = 5;
             // 
             // generateButton
             // 
-            this.generateButton.Location = new System.Drawing.Point(458, 193);
-            this.generateButton.Name = "generateButton";
-            this.generateButton.Size = new System.Drawing.Size(120, 23);
-            this.generateButton.TabIndex = 6;
-            this.generateButton.Text = "Generuj";
-            this.generateButton.UseVisualStyleBackColor = true;
+            generateButton.Location = new Point(458, 193);
+            generateButton.Name = "generateButton";
+            generateButton.Size = new Size(120, 23);
+            generateButton.TabIndex = 6;
+            generateButton.Text = "Generuj";
+            generateButton.UseVisualStyleBackColor = true;
+            generateButton.Click += generateButton_Click;
             // 
             // timeLabel
             // 
-            this.timeLabel.AutoSize = true;
-            this.timeLabel.Location = new System.Drawing.Point(382, 277);
-            this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(34, 15);
-            this.timeLabel.TabIndex = 7;
-            this.timeLabel.Text = "Czas:";
+            timeLabel.AutoSize = true;
+            timeLabel.Location = new Point(382, 277);
+            timeLabel.Name = "timeLabel";
+            timeLabel.Size = new Size(34, 15);
+            timeLabel.TabIndex = 7;
+            timeLabel.Text = "Czas:";
             // 
             // sortInsert
             // 
-            this.sortInsert.Location = new System.Drawing.Point(302, 351);
-            this.sortInsert.Name = "sortInsert";
-            this.sortInsert.Size = new System.Drawing.Size(75, 23);
-            this.sortInsert.TabIndex = 8;
-            this.sortInsert.Text = "SI";
-            this.sortInsert.UseVisualStyleBackColor = true;
-            this.sortInsert.Click += new System.EventHandler(this.sortInsert_Click);
+            sortInsert.Location = new Point(302, 351);
+            sortInsert.Name = "sortInsert";
+            sortInsert.Size = new Size(75, 23);
+            sortInsert.TabIndex = 8;
+            sortInsert.Text = "SI";
+            sortInsert.UseVisualStyleBackColor = true;
+            sortInsert.Click += sortInsert_Click;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(383, 351);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 9;
-            this.button5.Text = "SM";
-            this.button5.UseVisualStyleBackColor = true;
+            button5.Location = new Point(383, 351);
+            button5.Name = "button5";
+            button5.Size = new Size(75, 23);
+            button5.TabIndex = 9;
+            button5.Text = "SM";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
-            // button6
+            // quickSortButton
             // 
-            this.button6.Location = new System.Drawing.Point(464, 351);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 10;
-            this.button6.Text = "SQ";
-            this.button6.UseVisualStyleBackColor = true;
+            quickSortButton.Location = new Point(464, 351);
+            quickSortButton.Name = "quickSortButton";
+            quickSortButton.Size = new Size(75, 23);
+            quickSortButton.TabIndex = 10;
+            quickSortButton.Text = "SQ";
+            quickSortButton.UseVisualStyleBackColor = true;
+            quickSortButton.Click += quickSortButton_Click;
             // 
             // separatorSelected
             // 
-            this.separatorSelected.FormattingEnabled = true;
-            this.separatorSelected.Items.AddRange(new object[] {
-            ";",
-            ",",
-            "spacja"});
-            this.separatorSelected.Location = new System.Drawing.Point(316, 46);
-            this.separatorSelected.Name = "separatorSelected";
-            this.separatorSelected.Size = new System.Drawing.Size(121, 23);
-            this.separatorSelected.TabIndex = 11;
+            separatorSelected.FormattingEnabled = true;
+            separatorSelected.Items.AddRange(new object[] { ";", ",", "spacja" });
+            separatorSelected.Location = new Point(316, 46);
+            separatorSelected.Name = "separatorSelected";
+            separatorSelected.Size = new Size(121, 23);
+            separatorSelected.TabIndex = 11;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(327, 28);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 15);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Wybierz separator";
+            label2.AutoSize = true;
+            label2.Location = new Point(327, 28);
+            label2.Name = "label2";
+            label2.Size = new Size(101, 15);
+            label2.TabIndex = 12;
+            label2.Text = "Wybierz separator";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.separatorSelected);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.sortInsert);
-            this.Controls.Add(this.timeLabel);
-            this.Controls.Add(this.generateButton);
-            this.Controls.Add(this.generateNumber);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.wynik);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.generateNumber)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(label2);
+            Controls.Add(separatorSelected);
+            Controls.Add(quickSortButton);
+            Controls.Add(button5);
+            Controls.Add(sortInsert);
+            Controls.Add(timeLabel);
+            Controls.Add(generateButton);
+            Controls.Add(generateNumber);
+            Controls.Add(checkBox1);
+            Controls.Add(button2);
+            Controls.Add(wynik);
+            Controls.Add(button1);
+            Controls.Add(textBox1);
+            Name = "Form1";
+            Text = "Form1";
+            Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)generateNumber).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -207,7 +202,7 @@
         private Label timeLabel;
         private Button sortInsert;
         private Button button5;
-        private Button button6;
+        private Button quickSortButton;
         private ComboBox separatorSelected;
         private Label label2;
     }

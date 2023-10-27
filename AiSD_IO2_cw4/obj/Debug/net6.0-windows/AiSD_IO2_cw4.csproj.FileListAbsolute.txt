@@ -15,3 +15,19 @@ D:\169487\AiSD_IO2_cw4\obj\Debug\net6.0-windows\refint\AiSD_IO2_cw4.dll
 D:\169487\AiSD_IO2_cw4\obj\Debug\net6.0-windows\AiSD_IO2_cw4.pdb
 D:\169487\AiSD_IO2_cw4\obj\Debug\net6.0-windows\AiSD_IO2_cw4.genruntimeconfig.cache
 D:\169487\AiSD_IO2_cw4\obj\Debug\net6.0-windows\ref\AiSD_IO2_cw4.dll
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\bin\Debug\net6.0-windows\AiSD_IO2_cw4.exe
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\bin\Debug\net6.0-windows\AiSD_IO2_cw4.deps.json
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\bin\Debug\net6.0-windows\AiSD_IO2_cw4.runtimeconfig.json
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\bin\Debug\net6.0-windows\AiSD_IO2_cw4.dll
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\bin\Debug\net6.0-windows\AiSD_IO2_cw4.pdb
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\obj\Debug\net6.0-windows\AiSD_IO2_cw4.Form1.resources
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\obj\Debug\net6.0-windows\AiSD_IO2_cw4.csproj.GenerateResource.cache
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\obj\Debug\net6.0-windows\AiSD_IO2_cw4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\obj\Debug\net6.0-windows\AiSD_IO2_cw4.AssemblyInfoInputs.cache
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\obj\Debug\net6.0-windows\AiSD_IO2_cw4.AssemblyInfo.cs
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\obj\Debug\net6.0-windows\AiSD_IO2_cw4.csproj.CoreCompileInputs.cache
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\obj\Debug\net6.0-windows\AiSD_IO2_cw4.dll
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\obj\Debug\net6.0-windows\refint\AiSD_IO2_cw4.dll
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\obj\Debug\net6.0-windows\AiSD_IO2_cw4.pdb
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\obj\Debug\net6.0-windows\AiSD_IO2_cw4.genruntimeconfig.cache
+C:\Users\kacpe\Desktop\Zadanie AiDS\Algorytmy_I_Struktury_Danych\AiSD_IO2_cw4\obj\Debug\net6.0-windows\ref\AiSD_IO2_cw4.dll

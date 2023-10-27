@@ -1,4 +1,6 @@
-﻿namespace AiSD_IO2_cw4
+﻿using System.Collections.Generic;
+
+namespace AiSD_IO2_cw4
 {
     public partial class Form1 : Form
     {
@@ -24,6 +26,53 @@
             arr[index2] = element1;
         }
 
+        public List<int> GetList(string separator)
+        {
+            string numbers = textBox1.Text;
+            numbers = separatorSelected.Text == "spacja" ? numbers : numbers.Replace(" ", string.Empty);
+            string[] numbersArr = numbers.Split(separator);
+            List<int> list = new List<int>();
+
+            foreach (string number in numbersArr)
+            {
+                list.Add(int.Parse(number));
+            }
+
+            return list;
+        }
+
+        public string ResultAsString(List<int> list)
+        {
+            string res = "";
+            for (int i = 0; i < list.Count; i++)
+            {
+
+                string actualValue = i < list.Count - 1 ? "" + list.ElementAt(i) + ", " : "" + list.ElementAt(i);
+                res += actualValue;
+            }
+
+            return res;
+        }
+
+        public void GenerateRandom()
+        {
+            if (!checkBox1.Checked && generateNumber.Value != 0)
+            {
+                string separator = separatorSelected.Text == "spacja" ? " " : separatorSelected.Text;
+                string res = "";
+                for (int i = 0; i < generateNumber.Value; i++)
+                {
+                    Random rdm = new Random();
+                    int num = rdm.Next(1, 200);
+                    string optional = i == generateNumber.Value - 1 ? " " : separator + " ";
+                    res += num + optional;
+                    
+                }
+                MessageBox.Show("Twoje liczby zostały wylosowane!");
+                textBox1.Text = res.Trim();
+            }
+        }
+
         // Bubbling sort
         public double SortFun(List<int> arr)
         {
@@ -34,7 +83,7 @@
                 for (int j = 0; j < arr.Count - 1; j++)
                 {
                     if (arr[j] > arr[j + 1])
-                    { 
+                    {
                         Swap(arr, j, j + 1);
                         cbz = true;
                     }
@@ -77,7 +126,7 @@
             {
                 int actualValue = arr[i];
                 int j = i - 1;
-                while(j >= 0 && arr[j] > actualValue)
+                while (j >= 0 && arr[j] > actualValue)
                 {
                     Swap(arr, j + 1, j);
                     j--;
@@ -92,12 +141,19 @@
 
         public void MergeSort(List<int> arr)
         {
+            DateTime timeStart = DateTime.Now;
+            int avg = arr.Count / 2;
+            int restAvg = avg + 1;
+            int size = arr.Count;
 
+            List<int> list1 = new List<int>();
+            List<int> list2 = new List<int>();
         }
 
         public void QuickSort(List<int> arr)
         {
             DateTime timeStart = DateTime.Now;
+            
         }
 
         // Bubbling sort Button
@@ -106,33 +162,20 @@
             string separator = separatorSelected.Text == "spacja" ? " " : separatorSelected.Text;
             if (textBox1.Text.Contains(separator))
             {
-                string numbers = textBox1.Text;
-                numbers = numbers.Replace(" ", string.Empty);
-                string[] numbersArr = numbers.Split(separator);
-                List<int> list = new List<int>();
-
-                foreach (string number in numbersArr)
-                {
-                    list.Add(int.Parse(number));
-                }
+                List<int> list = GetList(separator);
 
                 double time = SortFun(list);
 
-                string res = "";
-                for (int i = 0; i < list.Count; i++)
-                {
-
-                    string actualValue = i < list.Count - 1 ? "" + list.ElementAt(i) + ", " : "" + list.ElementAt(i);
-                    res += actualValue;
-                }
+                string res = ResultAsString(list);
 
                 wynik.Text = res;
                 timeLabel.Text = time + "ms";
-            } else
+            }
+            else
             {
                 MessageBox.Show("Wybierz poprawny separator");
             }
-            
+
         }
 
         // SS button
@@ -141,41 +184,30 @@
             string separator = separatorSelected.Text == "spacja" ? " " : separatorSelected.Text;
             if (textBox1.Text.Contains(separator))
             {
-                string numbers = textBox1.Text;
-                numbers = separatorSelected.Text == "spacja" ? numbers : numbers.Replace(" ", string.Empty);
-                string[] numbersArr = numbers.Split(separator);
-                List<int> list = new List<int>();
 
-                foreach (string number in numbersArr)
-                {
-                    list.Add(int.Parse(number));
-                }
+                List<int> list = GetList(separator);
 
                 double time = SelectionSort(list);
 
-                string res = "";
-                for (int i = 0; i < list.Count; i++)
-                {
-
-                    string actualValue = i < list.Count - 1 ? "" + list.ElementAt(i) + ", " : "" + list.ElementAt(i);
-                    res += actualValue;
-                }
+                string res = ResultAsString(list);
 
                 timeLabel.Text = time + "ms";
                 wynik.Text = res;
-            } else
+            }
+            else
             {
                 MessageBox.Show("Wybierz poprawny separator");
             }
-            
+
         }
 
         // Active left or right
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBox1.Checked)
+            if (checkBox1.Checked)
             {
                 textBox1.Enabled = true;
+                textBox1.Text = "";
                 generateNumber.Enabled = false;
                 generateButton.Enabled = false;
             }
@@ -192,25 +224,12 @@
             string separator = separatorSelected.Text == "spacja" ? " " : separatorSelected.Text;
             if (textBox1.Text.Contains(separator))
             {
-                string numbers = textBox1.Text;
-                numbers = separatorSelected.Text == "spacja" ? numbers : numbers.Replace(" ", string.Empty);
-                string[] numbersArr = numbers.Split(separator);
-                List<int> list = new List<int>();
-
-                foreach (string number in numbersArr)
-                {
-                    list.Add(int.Parse(number));
-                }
+                List<int> list = GetList(separator);
 
                 double time = InsertionSort(list);
 
-                string res = "";
-                for (int i = 0; i < list.Count; i++)
-                {
+                string res = ResultAsString(list);
 
-                    string actualValue = i < list.Count - 1 ? "" + list.ElementAt(i) + ", " : "" + list.ElementAt(i);
-                    res += actualValue;
-                }
 
                 timeLabel.Text = time + "ms";
                 wynik.Text = res;
@@ -219,6 +238,53 @@
             {
                 MessageBox.Show("Wybierz poprawny separator");
             }
+        }
+
+        // Merge Sort Button
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string separator = separatorSelected.Text == "spacja" ? " " : separatorSelected.Text;
+            if (textBox1.Text.Contains(separator))
+            {
+                List<int> list = GetList(separator);
+
+                double time = InsertionSort(list);
+
+                string res = ResultAsString(list);
+
+                timeLabel.Text = time + "ms";
+                wynik.Text = res;
+            }
+            else
+            {
+                MessageBox.Show("Wybierz poprawny separator");
+            }
+        }
+
+        private void quickSortButton_Click(object sender, EventArgs e)
+        {
+            string separator = separatorSelected.Text == "spacja" ? " " : separatorSelected.Text;
+            if (textBox1.Text.Contains(separator))
+            {
+
+                List<int> list = GetList(separator);
+                QuickSort(list);
+
+
+                string res = ResultAsString(list);
+
+                //timeLabel.Text = time + "ms";
+                wynik.Text = res;
+            }
+            else
+            {
+                MessageBox.Show("Wybierz poprawny separator");
+            }
+        }
+
+        private void generateButton_Click(object sender, EventArgs e)
+        {
+            GenerateRandom();
         }
     }
 }
