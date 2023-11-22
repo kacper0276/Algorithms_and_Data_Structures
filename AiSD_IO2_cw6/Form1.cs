@@ -56,6 +56,25 @@ namespace AiSD_IO2_cw5
             }
         }
 
+        // BFS
+        public void C(Wezel3 w)
+        {
+            List<Wezel3> toVisit = new();
+
+            toVisit.Add(w);
+
+            for (int i = 0; i < toVisit.Count; i++)
+            {
+                var w1 = toVisit[i];
+                napis += w1.wartosc + ", ";
+                toVisit.RemoveAt(i--);
+                foreach(var w2 in w1.dzieci)
+                {
+                    toVisit.Add(w2);
+                }
+            }
+        }
+
         private void grafPokaz_Click(object sender, EventArgs e)
         {
             var g1 = new Wezel2(5);
@@ -95,6 +114,21 @@ namespace AiSD_IO2_cw5
 
         private void przeszukanieWszerz_Click(object sender, EventArgs e)
         {
+            Wezel3 d1 = new(5);
+            Wezel3 d2 = new(3);
+            Wezel3 d3 = new(1);
+            Wezel3 d4 = new(2);
+            Wezel3 d5 = new(4);
+            Wezel3 d6 = new(8);
+            d2.dzieci.Add(d4);
+            d2.dzieci.Add(d5);
+            d3.dzieci.Add(d6);
+            d1.dzieci.Add(d2);
+            d1.dzieci.Add(d3);
+
+            napis = "";
+            C(d1);
+            MessageBox.Show($"BFS: {napis}");
 
         }
     }
@@ -108,6 +142,7 @@ namespace AiSD_IO2_cw5
         }
     }
 
+    // Drzewo
     public class Wezel : WezelGlowny
     {
         public List<Wezel> dzieci = new List<Wezel>();
@@ -117,6 +152,7 @@ namespace AiSD_IO2_cw5
         
     }
 
+    // Przeszukiwanie wg³¹b
     public class Wezel2 : WezelGlowny
     {
         public List<Wezel2> sasiedzi = new();
@@ -125,9 +161,10 @@ namespace AiSD_IO2_cw5
         { }
     }
 
+    // Przeszukiwanie wszesz
     public class Wezel3 : WezelGlowny
     {
-        public List<Wezel> dzieci = new List<Wezel>();
+        public List<Wezel3> dzieci = new();
 
         public Wezel3(int liczba) : base(liczba)
         { }
