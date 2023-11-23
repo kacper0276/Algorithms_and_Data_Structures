@@ -11,9 +11,26 @@ namespace AiSD_IO2_cw5
         {
 
         }
-        public string napis = "";
-        public List<Wezel2> odwiedzone = new();
+        public static string napis = "";
 
+        // Wyœwietlanie drzewa
+        public class Wezel : WezelGlowny
+        {
+            public List<Wezel> dzieci = new List<Wezel>();
+
+            public Wezel(int liczba) : base(liczba)
+            { }
+
+        }
+
+        void WyswietlDrzewo(Wezel w)
+        {
+            napis += w.wartosc.ToString() + ",";
+            foreach (var w1 in w.dzieci)
+            {
+                WyswietlDrzewo(w1);
+            }
+        }
         private void stworzwezel_Click(object sender, EventArgs e)
         {
             var w1 = new Wezel(5);
@@ -28,22 +45,23 @@ namespace AiSD_IO2_cw5
             w1.dzieci.Add(d2);
             w1.dzieci.Add(d3);
             napis = "";
-            A(w1);
+            WyswietlDrzewo(w1);
             MessageBox.Show(napis);
         }
 
 
-        void A(Wezel w)
+
+        // Przechodzenie wg³¹b - Graf(nie tylko drzewo)
+        public class Wezel2 : WezelGlowny
         {
-            napis += w.wartosc.ToString() + ",";
-            foreach (var w1 in w.dzieci)
-            {
-                A(w1);
-            }
+            public List<Wezel2> sasiedzi = new();
+
+            public Wezel2(int wartosc) : base(wartosc)
+            { }
         }
 
-        // Przechodzenie wg³¹b
-        void B(Wezel2 w)
+        public List<Wezel2> odwiedzone = new();
+        void PrzechodzenieWglab(Wezel2 w)
         {
             odwiedzone.Add(w);
             napis += w.wartosc.ToString() + ",";
@@ -51,49 +69,10 @@ namespace AiSD_IO2_cw5
             {
                 if (!odwiedzone.Contains(w1))
                 {
-                    B(w1);
+                    PrzechodzenieWglab(w1);
                 }
             }
         }
-
-        // BFS
-        public void C(Wezel3 w)
-        {
-            List<Wezel3> toVisit = new();
-
-            toVisit.Add(w);
-
-            for (int i = 0; i < toVisit.Count; i++)
-            {
-                var w1 = toVisit[i];
-                napis += w1.wartosc + ", ";
-                toVisit.RemoveAt(i--);
-                foreach(var w2 in w1.dzieci)
-                {
-                    toVisit.Add(w2);
-                }
-            }
-        }
-
-        // BFS - bez cykli
-        public void D(Wezel2 w)
-        {
-            List<Wezel2> toVisit = new();
-
-            toVisit.Add(w);
-
-            for(int i = 0; i < toVisit.Count; i++)
-            {
-                var w1 = toVisit[i];
-                napis += w1.wartosc + ", ";
-                foreach (var w2 in w1.sasiedzi)
-                {
-                    toVisit.Add(w2);
-                }
-            }
-        }
-
-        
 
         private void grafPokaz_Click(object sender, EventArgs e)
         {
@@ -120,18 +99,62 @@ namespace AiSD_IO2_cw5
 
             odwiedzone.Clear();
             napis = "";
-            B(g7);
+            PrzechodzenieWglab(g7);
             MessageBox.Show(napis);
         }
 
-        // Stworz BFS - przechodzenie wszerz
+        // BFS
+        public class Wezel3 : WezelGlowny
+        {
+            public List<Wezel3> dzieci = new();
+
+            public Wezel3(int liczba) : base(liczba)
+            { }
+        }
+
+        public void PrzechodzenieWszerz(Wezel3 w)
+        {
+            List<Wezel3> toVisit = new();
+
+            toVisit.Add(w);
+
+            for (int i = 0; i < toVisit.Count; i++)
+            {
+                var w1 = toVisit[i];
+                napis += w1.wartosc + ", ";
+                toVisit.RemoveAt(i--);
+                foreach(var w2 in w1.dzieci)
+                {
+                    toVisit.Add(w2);
+                }
+            }
+        }
+
+        // BFS - bez cykli
+        // Przeszukiwanie wszesz
+        public void PrzeszukanieWszerz(Wezel2 w)
+        {
+            List<Wezel2> toVisit = new();
+
+            toVisit.Add(w);
+
+            for(int i = 0; i < toVisit.Count; i++)
+            {
+                var w1 = toVisit[i];
+                napis += w1.wartosc + ", ";
+                foreach (var w2 in w1.sasiedzi)
+                {
+                    toVisit.Add(w2);
+                }
+            }
+        }
+
         /*
          5
         3 1
        2  4  8
         Wynik: 5, 3, 1, 2, 4, 8
          */
-
         private void przeszukanieWszerz_Click(object sender, EventArgs e)
         {
             Wezel3 d1 = new(5);
@@ -147,11 +170,13 @@ namespace AiSD_IO2_cw5
             d1.dzieci.Add(d3);
 
             napis = "";
-            C(d1);
+            PrzechodzenieWszerz(d1);
             MessageBox.Show($"BFS: {napis}");
 
         }
 
+        // Drzewo Binarne
+        public static string napisBinarka = "";
         private void addToBinaryTree_Click(object sender, EventArgs e)
         {
             DrzewoBinarne drzewoBinarne = new(5);
@@ -168,48 +193,12 @@ namespace AiSD_IO2_cw5
             drzewoBinarne.Add(8);
             drzewoBinarne.Add(11);
 
+            drzewoBinarne.Wypisz();
+            MessageBox.Show(napis);
+
         }
     }
-
-    // KLASY WÊZÊ£
-
-    public class WezelGlowny 
-    {
-        public int wartosc;
-        public WezelGlowny(int liczba)
-        {
-            this.wartosc = liczba;
-        }
-    }
-
-    // Drzewo
-    public class Wezel : WezelGlowny
-    {
-        public List<Wezel> dzieci = new List<Wezel>();
-
-        public Wezel(int liczba) : base(liczba)
-        { }
-        
-    }
-
-    // Przeszukiwanie wg³¹b
-    public class Wezel2 : WezelGlowny
-    {
-        public List<Wezel2> sasiedzi = new();
-
-        public Wezel2(int wartosc) : base(wartosc)
-        { }
-    }
-
-    // Przeszukiwanie wszesz
-    public class Wezel3 : WezelGlowny
-    {
-        public List<Wezel3> dzieci = new();
-
-        public Wezel3(int liczba) : base(liczba)
-        { }
-    }
-
+    
     // Drzewo binarne
     public class Wezel4 : WezelGlowny
     {
@@ -218,19 +207,38 @@ namespace AiSD_IO2_cw5
         public Wezel4 leweDziecko;
 
         public Wezel4(int wartosc) : base(wartosc)
-        {
-            
-        }
+        {   }
     }
 
     class DrzewoBinarne
     {
         public Wezel4 korzen;
         public int liczbaWezlow;
+
         public DrzewoBinarne(int liczba)
         {
             this.korzen = new(liczba);
             this.liczbaWezlow = 1;
+        }
+
+        public void Wypisz()
+        {
+            List<Wezel4> toVisit = new();
+
+            toVisit.Add(korzen);
+
+            for(int i = 0; i < toVisit.Count; i++)
+            {
+                Form1.napis += toVisit[i].wartosc + ", ";
+                if (toVisit[i].leweDziecko != null)
+                {
+                    toVisit.Add(toVisit[i].leweDziecko);
+                }
+                if (toVisit[i].praweDziecko != null)
+                {
+                    toVisit.Add(toVisit[i].praweDziecko);
+                }
+            }
         }
 
         public Wezel4 ZnajdzWezel(int liczba)
@@ -257,10 +265,36 @@ namespace AiSD_IO2_cw5
             }
         }
 
+        /* Input: -3
+         * 5 
+          1  6
+        -1
+       -2
+      -3
+         */
+
         // Binarne drzewo poszukiwañ
         public void Add(int liczba)
         {
-            
+            Wezel4 w = ZnajdzWezel(liczba);
+            if(w.wartosc > liczba)
+            {
+                w.leweDziecko = new Wezel4(liczba);
+            }
+            else
+            {
+                w.praweDziecko = new Wezel4(liczba);
+            }
+        }
+    }
+
+    // KLASY WÊZÊ£
+    public class WezelGlowny
+    {
+        public int wartosc;
+        public WezelGlowny(int liczba)
+        {
+            this.wartosc = liczba;
         }
     }
 }
