@@ -42,7 +42,7 @@ namespace AiSD_IO2_cw5
             }
         }
 
-        // Przechodzenie wg³¹b
+        // Przechodzenie wgÂ³Â¹b
         void B(Wezel2 w)
         {
             odwiedzone.Add(w);
@@ -152,7 +152,7 @@ namespace AiSD_IO2_cw5
         
     }
 
-    // Przeszukiwanie wg³¹b
+    // Przeszukiwanie wgÂ³Â¹b
     public class Wezel2 : WezelGlowny
     {
         public List<Wezel2> sasiedzi = new();
@@ -161,7 +161,7 @@ namespace AiSD_IO2_cw5
         { }
     }
 
-    // Przeszukiwanie wszesz
+    // Przeszukiwanie wszerz
     public class Wezel3 : WezelGlowny
     {
         public List<Wezel3> dzieci = new();
