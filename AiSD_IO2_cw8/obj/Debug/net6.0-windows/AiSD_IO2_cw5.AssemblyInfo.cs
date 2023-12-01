@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AiSD_IO2_cw5")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d4a88300c1a17741d2e381c8db6cbd042df623b")]
 [assembly: System.Reflection.AssemblyProductAttribute("AiSD_IO2_cw5")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AiSD_IO2_cw5")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

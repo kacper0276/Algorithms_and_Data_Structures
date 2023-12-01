@@ -179,7 +179,6 @@ namespace AiSD_IO2_cw5
         private void addToBinaryTree_Click(object sender, EventArgs e)
         {
             DrzewoBinarne drzewoBinarne = new(5);
-            Wezel4 rodzic = new(5);
 
             drzewoBinarne.Add(4);
             drzewoBinarne.Add(7);
@@ -192,9 +191,19 @@ namespace AiSD_IO2_cw5
             drzewoBinarne.Add(8);
             drzewoBinarne.Add(11);
 
+            DrzewoBinarne nastepnik = new(5);
+            nastepnik.Add(4);
+            nastepnik.Add(2);
+            nastepnik.Add(1);
+            nastepnik.Add(3);
+            nastepnik.Add(6);
+
             var wynikZnajdz = drzewoBinarne.Znajdz(11);
             MessageBox.Show($"{wynikZnajdz?.wartosc}, {wynikZnajdz.rodzic?.wartosc}, {wynikZnajdz.praweDziecko?.wartosc}, {wynikZnajdz.leweDziecko?.wartosc}");
-            MessageBox.Show($"Minimalna w wêŸle {drzewoBinarne.ZnajdzMin(new Wezel4(11)).wartosc}");
+            MessageBox.Show($"Minimalna w wêŸle {drzewoBinarne.ZnajdzMin(drzewoBinarne.Znajdz(8)).wartosc}");
+            MessageBox.Show($"Maksymalna w wêŸle {drzewoBinarne.ZnajdzMax(drzewoBinarne.Znajdz(8)).wartosc}");
+            MessageBox.Show($"Nastêpnik: {nastepnik.Nastepnik(nastepnik.Znajdz(6)).wartosc}");
+            MessageBox.Show($"Poprzednik: {nastepnik.Poprzednik(nastepnik.Znajdz(1)).wartosc}");
             // drzewoBinarne.Wypisz();
             // MessageBox.Show(napis);
 
@@ -215,12 +224,12 @@ namespace AiSD_IO2_cw5
     // Metody do napisania
     //done - Wezel4 Znajdz(int liczba) - zwraca wêze³ która ma t¹ wartoœæ, jak dwie te same to zwraca pierwsz¹
     //done - Wezel4 ZnajdzMin(Wezel4 w) - zaczyna od wêz³a w, znajduje najmniejsz¹ wartoœæ w tym drzewie (Ca³y czas w lewo)
-    // Wezel4 ZnajdzMax(Wezel4 w) - zaczyna od wêz³a w, znajduje najwiêksz¹ wartoœæ w tym drzewie (Ca³y czas w prawo)
-    // Wezel4 Nastepnik(Wezel4 w) - Nastêpna wartoœæ rosn¹ca, ma wskazywaæ kolejne wartoœci (Wskazujesz 1 ma zwróciæ 2), (Wskazujesz 2 ma zwróciæ 3), Maks to null
+    //done - Wezel4 ZnajdzMax(Wezel4 w) - zaczyna od wêz³a w, znajduje najwiêksz¹ wartoœæ w tym drzewie (Ca³y czas w prawo)
+    //done - Wezel4 Nastepnik(Wezel4 w) - Nastêpna wartoœæ rosn¹ca, ma wskazywaæ kolejne wartoœci (Wskazujesz 1 ma zwróciæ 2), (Wskazujesz 2 ma zwróciæ 3), Maks to null
     // a) je¿eli jest prawe dziecko, ZnajdŸMin(w prawedziecko) -> nastêpnik
     // b) nie ma prawego dziecka - powrót do rodzica
     // c) je¿eli nie ma prawego dziecka i nie zachodzi punkt b, ale nie ma ju¿ rodzica, bo jestem w korzeniu, nie ma nastêpnika
-    // Wezel4 Poprzednik(Wezel4 w) - 
+    //done - Wezel4 Poprzednik(Wezel4 w) - 
 
     // b) 3 -> 2(lewe dziecko 4) -> 4 <- nastêpnik
     /*      5
@@ -365,6 +374,73 @@ namespace AiSD_IO2_cw5
             }
 
             return min;
+        }
+
+        // Szukanie najwiêkszej wartoœci
+        public Wezel4 ZnajdzMax(Wezel4 w)
+        {
+            List<Wezel4> toVisit = new();
+            Wezel4 max = w;
+
+            toVisit.Add(w);
+            for (int i = 0; i < toVisit.Count; i++)
+            {
+                if (toVisit[i].wartosc > max.wartosc)
+                {
+                    max = toVisit[i];
+                }
+
+                if (toVisit[i].leweDziecko != null)
+                {
+                    toVisit.Add(toVisit[i].leweDziecko);
+                }
+                if (toVisit[i].praweDziecko != null)
+                {
+                    toVisit.Add(toVisit[i].praweDziecko);
+                }
+            }
+
+            return max;
+        }
+
+        // Nastêpnik
+        public Wezel4 Nastepnik(Wezel4 w)
+        {
+            if(w.praweDziecko is not null)
+            {
+                return w.praweDziecko;
+            }
+            else
+            {
+                Wezel4 act = w.rodzic;
+                while(act.wartosc < w.wartosc)
+                {
+                    if (act.rodzic is null)
+                        break;
+                    act = act.rodzic;
+                }
+                return act.wartosc > w.wartosc ? act : w;
+            }
+        }
+
+        // Poprzednik
+        public Wezel4 Poprzednik(Wezel4 w)
+        {
+            if (w.leweDziecko is not null)
+            {
+                return w.leweDziecko;
+            }
+            else
+            {
+                Wezel4 act = w.rodzic;
+                while (act.wartosc > w.wartosc)
+                {
+                    if (act.rodzic is null)
+                        break;
+                    act = act.rodzic;
+                }
+                return act.wartosc < w.wartosc ? act : w;
+            }
         }
 
     }
