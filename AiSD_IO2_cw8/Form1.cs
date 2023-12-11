@@ -123,7 +123,7 @@ namespace AiSD_IO2_cw5
                 var w1 = toVisit[i];
                 napis += w1.wartosc + ", ";
                 toVisit.RemoveAt(i--);
-                foreach(var w2 in w1.dzieci)
+                foreach (var w2 in w1.dzieci)
                 {
                     toVisit.Add(w2);
                 }
@@ -138,7 +138,7 @@ namespace AiSD_IO2_cw5
 
             toVisit.Add(w);
 
-            for(int i = 0; i < toVisit.Count; i++)
+            for (int i = 0; i < toVisit.Count; i++)
             {
                 var w1 = toVisit[i];
                 napis += w1.wartosc + ", ";
@@ -191,6 +191,34 @@ namespace AiSD_IO2_cw5
             drzewoBinarne.Add(8);
             drzewoBinarne.Add(11);
 
+            var wynikZnajdz = drzewoBinarne.Znajdz(8);
+            MessageBox.Show($"Wartoœæ: {wynikZnajdz?.wartosc}, Rodzic: {wynikZnajdz.rodzic?.wartosc}, Prawe dziecko: {wynikZnajdz.praweDziecko?.wartosc}, Lewe Dziecko: {wynikZnajdz.leweDziecko?.wartosc}");
+
+            drzewoBinarne.Wypisz();
+            MessageBox.Show(napis);
+        }
+
+        private void findMinAndMaxValue_Click(object sender, EventArgs e)
+        {
+            DrzewoBinarne drzewoBinarne = new(5);
+
+            drzewoBinarne.Add(4);
+            drzewoBinarne.Add(7);
+            drzewoBinarne.Add(2);
+            drzewoBinarne.Add(3);
+            drzewoBinarne.Add(6);
+            drzewoBinarne.Add(6);
+            drzewoBinarne.Add(5);
+            drzewoBinarne.Add(5);
+            drzewoBinarne.Add(8);
+            drzewoBinarne.Add(11);
+
+            MessageBox.Show($"Minimalna w wêŸle {drzewoBinarne.ZnajdzMin(drzewoBinarne.Znajdz(8)).wartosc}");
+            MessageBox.Show($"Maksymalna w wêŸle {drzewoBinarne.ZnajdzMax(drzewoBinarne.Znajdz(8)).wartosc}");
+        }
+
+        private void findNextAndPreviousValue_Click(object sender, EventArgs e)
+        {
             DrzewoBinarne nastepnik = new(5);
             nastepnik.Add(4);
             nastepnik.Add(2);
@@ -198,18 +226,11 @@ namespace AiSD_IO2_cw5
             nastepnik.Add(3);
             nastepnik.Add(6);
 
-            var wynikZnajdz = drzewoBinarne.Znajdz(11);
-            MessageBox.Show($"{wynikZnajdz?.wartosc}, {wynikZnajdz.rodzic?.wartosc}, {wynikZnajdz.praweDziecko?.wartosc}, {wynikZnajdz.leweDziecko?.wartosc}");
-            MessageBox.Show($"Minimalna w wêŸle {drzewoBinarne.ZnajdzMin(drzewoBinarne.Znajdz(8)).wartosc}");
-            MessageBox.Show($"Maksymalna w wêŸle {drzewoBinarne.ZnajdzMax(drzewoBinarne.Znajdz(8)).wartosc}");
-            MessageBox.Show($"Nastêpnik: {nastepnik.Nastepnik(nastepnik.Znajdz(6)).wartosc}");
-            MessageBox.Show($"Poprzednik: {nastepnik.Poprzednik(nastepnik.Znajdz(1)).wartosc}");
-            // drzewoBinarne.Wypisz();
-            // MessageBox.Show(napis);
-
+            MessageBox.Show($"Nastêpnik: {nastepnik.Nastepnik(nastepnik.Znajdz(3)).wartosc}");
+            MessageBox.Show($"Poprzednik: {nastepnik.Poprzednik(nastepnik.Znajdz(6)).wartosc}");
         }
     }
-    
+
     // Drzewo binarne
     public class Wezel4 : WezelGlowny
     {

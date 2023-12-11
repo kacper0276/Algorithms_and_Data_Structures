@@ -28,66 +28,89 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.stworzwezel = new System.Windows.Forms.Button();
-            this.grafPokaz = new System.Windows.Forms.Button();
-            this.przeszukanieWszerz = new System.Windows.Forms.Button();
-            this.addToBinaryTree = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            stworzwezel = new Button();
+            grafPokaz = new Button();
+            przeszukanieWszerz = new Button();
+            addToBinaryTree = new Button();
+            findMinAndMaxValue = new Button();
+            findNextAndPreviousValue = new Button();
+            SuspendLayout();
             // 
             // stworzwezel
             // 
-            this.stworzwezel.Location = new System.Drawing.Point(89, 72);
-            this.stworzwezel.Name = "stworzwezel";
-            this.stworzwezel.Size = new System.Drawing.Size(150, 46);
-            this.stworzwezel.TabIndex = 0;
-            this.stworzwezel.Text = "Pokaż węzeł";
-            this.stworzwezel.UseVisualStyleBackColor = true;
-            this.stworzwezel.Click += new System.EventHandler(this.stworzwezel_Click);
+            stworzwezel.Location = new Point(89, 72);
+            stworzwezel.Name = "stworzwezel";
+            stworzwezel.Size = new Size(150, 46);
+            stworzwezel.TabIndex = 0;
+            stworzwezel.Text = "Pokaż węzeł";
+            stworzwezel.UseVisualStyleBackColor = true;
+            stworzwezel.Click += stworzwezel_Click;
             // 
             // grafPokaz
             // 
-            this.grafPokaz.Location = new System.Drawing.Point(309, 72);
-            this.grafPokaz.Name = "grafPokaz";
-            this.grafPokaz.Size = new System.Drawing.Size(150, 46);
-            this.grafPokaz.TabIndex = 1;
-            this.grafPokaz.Text = "Pokaż graf (Szukanie wgłąb)";
-            this.grafPokaz.UseVisualStyleBackColor = true;
-            this.grafPokaz.Click += new System.EventHandler(this.grafPokaz_Click);
+            grafPokaz.Location = new Point(309, 72);
+            grafPokaz.Name = "grafPokaz";
+            grafPokaz.Size = new Size(150, 46);
+            grafPokaz.TabIndex = 1;
+            grafPokaz.Text = "Pokaż graf (Szukanie wgłąb)";
+            grafPokaz.UseVisualStyleBackColor = true;
+            grafPokaz.Click += grafPokaz_Click;
             // 
             // przeszukanieWszerz
             // 
-            this.przeszukanieWszerz.Location = new System.Drawing.Point(526, 72);
-            this.przeszukanieWszerz.Name = "przeszukanieWszerz";
-            this.przeszukanieWszerz.Size = new System.Drawing.Size(150, 46);
-            this.przeszukanieWszerz.TabIndex = 2;
-            this.przeszukanieWszerz.Text = "Pokaż graf (Szukanie wszerz)";
-            this.przeszukanieWszerz.UseVisualStyleBackColor = true;
-            this.przeszukanieWszerz.Click += new System.EventHandler(this.przeszukanieWszerz_Click);
+            przeszukanieWszerz.Location = new Point(526, 72);
+            przeszukanieWszerz.Name = "przeszukanieWszerz";
+            przeszukanieWszerz.Size = new Size(150, 46);
+            przeszukanieWszerz.TabIndex = 2;
+            przeszukanieWszerz.Text = "Pokaż graf (Szukanie wszerz)";
+            przeszukanieWszerz.UseVisualStyleBackColor = true;
+            przeszukanieWszerz.Click += przeszukanieWszerz_Click;
             // 
             // addToBinaryTree
             // 
-            this.addToBinaryTree.Location = new System.Drawing.Point(89, 196);
-            this.addToBinaryTree.Name = "addToBinaryTree";
-            this.addToBinaryTree.Size = new System.Drawing.Size(150, 46);
-            this.addToBinaryTree.TabIndex = 3;
-            this.addToBinaryTree.Text = "Dodaj do drzewa binarnego";
-            this.addToBinaryTree.UseVisualStyleBackColor = true;
-            this.addToBinaryTree.Click += new System.EventHandler(this.addToBinaryTree_Click);
+            addToBinaryTree.Location = new Point(89, 196);
+            addToBinaryTree.Name = "addToBinaryTree";
+            addToBinaryTree.Size = new Size(150, 46);
+            addToBinaryTree.TabIndex = 3;
+            addToBinaryTree.Text = "Dodaj i znajdz Drzewo Binarne";
+            addToBinaryTree.UseVisualStyleBackColor = true;
+            addToBinaryTree.Click += addToBinaryTree_Click;
+            // 
+            // findMinAndMaxValue
+            // 
+            findMinAndMaxValue.Location = new Point(309, 196);
+            findMinAndMaxValue.Name = "findMinAndMaxValue";
+            findMinAndMaxValue.Size = new Size(150, 46);
+            findMinAndMaxValue.TabIndex = 4;
+            findMinAndMaxValue.Text = "Znajdź Min i Max w węźle";
+            findMinAndMaxValue.UseVisualStyleBackColor = true;
+            findMinAndMaxValue.Click += findMinAndMaxValue_Click;
+            // 
+            // findNextAndPreviousValue
+            // 
+            findNextAndPreviousValue.Location = new Point(526, 196);
+            findNextAndPreviousValue.Name = "findNextAndPreviousValue";
+            findNextAndPreviousValue.Size = new Size(150, 46);
+            findNextAndPreviousValue.TabIndex = 5;
+            findNextAndPreviousValue.Text = "Wypisz następnik i poprzednik (drzewo)";
+            findNextAndPreviousValue.UseVisualStyleBackColor = true;
+            findNextAndPreviousValue.Click += findNextAndPreviousValue_Click;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.addToBinaryTree);
-            this.Controls.Add(this.przeszukanieWszerz);
-            this.Controls.Add(this.grafPokaz);
-            this.Controls.Add(this.stworzwezel);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(findNextAndPreviousValue);
+            Controls.Add(findMinAndMaxValue);
+            Controls.Add(addToBinaryTree);
+            Controls.Add(przeszukanieWszerz);
+            Controls.Add(grafPokaz);
+            Controls.Add(stworzwezel);
+            Name = "Form1";
+            Text = "Form1";
+            Load += Form1_Load;
+            ResumeLayout(false);
         }
 
         #endregion
@@ -96,5 +119,7 @@
         private Button grafPokaz;
         private Button przeszukanieWszerz;
         private Button addToBinaryTree;
+        private Button findMinAndMaxValue;
+        private Button findNextAndPreviousValue;
     }
 }
