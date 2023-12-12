@@ -191,8 +191,11 @@ namespace AiSD_IO2_cw5
             drzewoBinarne.Add(8);
             drzewoBinarne.Add(11);
 
-            var wynikZnajdz = drzewoBinarne.Znajdz(8);
-            MessageBox.Show($"Wartoœæ: {wynikZnajdz?.wartosc}, Rodzic: {wynikZnajdz.rodzic?.wartosc}, Prawe dziecko: {wynikZnajdz.praweDziecko?.wartosc}, Lewe Dziecko: {wynikZnajdz.leweDziecko?.wartosc}");
+            var wynikZnajdz = drzewoBinarne.Znajdz(50);
+            if (wynikZnajdz is not null)
+                MessageBox.Show($"Wartoœæ: {wynikZnajdz?.wartosc}, Rodzic: {wynikZnajdz.rodzic?.wartosc}, Prawe dziecko: {wynikZnajdz.praweDziecko?.wartosc}, Lewe Dziecko: {wynikZnajdz.leweDziecko?.wartosc}");
+            else
+                MessageBox.Show($"Wartoœæ to null");
 
             drzewoBinarne.Wypisz();
             MessageBox.Show(napis);
@@ -388,11 +391,12 @@ namespace AiSD_IO2_cw5
                 {
                     toVisit.Add(toVisit[i].leweDziecko);
                 }
-                if (toVisit[i].praweDziecko != null)
-                {
-                    toVisit.Add(toVisit[i].praweDziecko);
-                }
             }
+
+            //while (w.leweDziecko is not null)
+            //{
+              //  w = w.leweDziecko;
+            //}
 
             return min;
         }
@@ -411,15 +415,18 @@ namespace AiSD_IO2_cw5
                     max = toVisit[i];
                 }
 
-                if (toVisit[i].leweDziecko != null)
-                {
-                    toVisit.Add(toVisit[i].leweDziecko);
-                }
                 if (toVisit[i].praweDziecko != null)
                 {
                     toVisit.Add(toVisit[i].praweDziecko);
                 }
             }
+
+            //while(w.praweDziecko is not null)
+            //{
+            //    w = w.praweDziecko;
+            //}
+
+            //return w;
 
             return max;
         }
@@ -429,7 +436,7 @@ namespace AiSD_IO2_cw5
         {
             if(w.praweDziecko is not null)
             {
-                return w.praweDziecko;
+                return this.ZnajdzMin(w.praweDziecko);
             }
             else
             {
@@ -442,6 +449,26 @@ namespace AiSD_IO2_cw5
                 }
                 return act.wartosc > w.wartosc ? act : w;
             }
+        }
+
+        public Wezel4 NastepnikZajecia(Wezel4 w)
+        {
+            if (w.praweDziecko is not null)
+            {
+                return this.ZnajdzMin(w.praweDziecko);
+            }
+
+            while(w.rodzic is not null)
+            {
+                if(w.rodzic.leweDziecko == w)
+                {
+                    return w.rodzic;
+                }
+
+                w = w.rodzic;
+            }
+
+            return null;
         }
 
         // Poprzednik
@@ -462,6 +489,26 @@ namespace AiSD_IO2_cw5
                 }
                 return act.wartosc < w.wartosc ? act : w;
             }
+        }
+
+        public Wezel4 PoprzednikZajecia(Wezel4 w)
+        {
+            if (w.leweDziecko is not null)
+            {
+                return this.ZnajdzMax(w.leweDziecko);
+            }
+
+            while (w.rodzic is not null)
+            {
+                if (w.rodzic.praweDziecko == w)
+                {
+                    return w.rodzic;
+                }
+
+                w = w.rodzic;
+            }
+
+            return null;
         }
 
     }
