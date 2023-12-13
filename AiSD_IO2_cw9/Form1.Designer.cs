@@ -34,6 +34,7 @@
             addToBinaryTree = new Button();
             findMinAndMaxValue = new Button();
             findNextAndPreviousValue = new Button();
+            deleteValueFromTree = new Button();
             SuspendLayout();
             // 
             // stworzwezel
@@ -96,11 +97,22 @@
             findNextAndPreviousValue.UseVisualStyleBackColor = true;
             findNextAndPreviousValue.Click += findNextAndPreviousValue_Click;
             // 
+            // deleteValueFromTree
+            // 
+            deleteValueFromTree.Location = new Point(89, 294);
+            deleteValueFromTree.Name = "deleteValueFromTree";
+            deleteValueFromTree.Size = new Size(150, 46);
+            deleteValueFromTree.TabIndex = 6;
+            deleteValueFromTree.Text = "Usuń wartość z drzewa";
+            deleteValueFromTree.UseVisualStyleBackColor = true;
+            deleteValueFromTree.Click += deleteValueFromTree_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(deleteValueFromTree);
             Controls.Add(findNextAndPreviousValue);
             Controls.Add(findMinAndMaxValue);
             Controls.Add(addToBinaryTree);
@@ -121,5 +133,6 @@
         private Button addToBinaryTree;
         private Button findMinAndMaxValue;
         private Button findNextAndPreviousValue;
+        private Button deleteValueFromTree;
     }
 }

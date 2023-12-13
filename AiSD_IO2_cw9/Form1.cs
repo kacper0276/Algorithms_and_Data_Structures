@@ -228,9 +228,45 @@ namespace AiSD_IO2_cw5
             nastepnik.Add(1);
             nastepnik.Add(3);
             nastepnik.Add(6);
+            nastepnik.Add(7);
+            nastepnik.Add(10);
+            nastepnik.Add(9);
 
-            MessageBox.Show($"Nastêpnik: {nastepnik.Nastepnik(nastepnik.Znajdz(3)).wartosc}");
-            MessageBox.Show($"Poprzednik: {nastepnik.Poprzednik(nastepnik.Znajdz(6)).wartosc}");
+            MessageBox.Show($"Nastêpnik: {nastepnik.Nastepnik(nastepnik.Znajdz(7)).wartosc}");
+            MessageBox.Show($"Poprzednik: {nastepnik.Poprzednik(nastepnik.Znajdz(4)).wartosc}");
+        }
+
+        private void deleteValueFromTree_Click(object sender, EventArgs e)
+        {
+            DrzewoBinarne nastepnik = new(6);
+            nastepnik.Add(5);
+            nastepnik.Add(3);
+            nastepnik.Add(2);
+            nastepnik.Add(4);
+            nastepnik.Add(1);
+            
+
+            List<Wezel4> lista = nastepnik.WypiszSzczegoloweDane();
+            string napis = "Przed: \n";
+
+            foreach(var el in lista)
+            {
+                napis += $"wartoœæ {el.wartosc} - rodzic: {el.rodzic?.wartosc} - lewe dziecko: {el.leweDziecko?.wartosc} - prawe dziecko: {el.praweDziecko?.wartosc} \n";   
+            }
+
+            MessageBox.Show(napis);
+
+            nastepnik.Remove(nastepnik.Znajdz(4));
+
+            napis = "Po: \n";
+            lista = nastepnik.WypiszSzczegoloweDane();
+
+            foreach (var el in lista)
+            {
+                napis += $"wartoœæ {el.wartosc} - rodzic: {el.rodzic?.wartosc} - lewe dziecko: {el.leweDziecko?.wartosc} - prawe dziecko: {el.praweDziecko?.wartosc} \n";
+            }
+
+            MessageBox.Show(napis);
         }
     }
 
@@ -295,6 +331,27 @@ namespace AiSD_IO2_cw5
                     toVisit.Add(toVisit[i].praweDziecko);
                 }
             }
+        }
+
+        public List<Wezel4> WypiszSzczegoloweDane()
+        {
+            List<Wezel4> toVisit = new();
+
+            toVisit.Add(korzen);
+
+            for (int i = 0; i < toVisit.Count; i++)
+            {
+                if (toVisit[i].leweDziecko != null)
+                {
+                    toVisit.Add(toVisit[i].leweDziecko);
+                }
+                if (toVisit[i].praweDziecko != null)
+                {
+                    toVisit.Add(toVisit[i].praweDziecko);
+                }
+            }
+
+            return toVisit;
         }
 
         public Wezel4 ZnajdzWezel(int liczba)
@@ -447,7 +504,7 @@ namespace AiSD_IO2_cw5
                         break;
                     act = act.rodzic;
                 }
-                return act.wartosc > w.wartosc ? act : w;
+                return act.wartosc > w.wartosc ? act : null;
             }
         }
 
@@ -487,7 +544,7 @@ namespace AiSD_IO2_cw5
                         break;
                     act = act.rodzic;
                 }
-                return act.wartosc < w.wartosc ? act : w;
+                return act.wartosc < w.wartosc ? act : null;
             }
         }
 
@@ -509,6 +566,102 @@ namespace AiSD_IO2_cw5
             }
 
             return null;
+        }
+
+        // Usuwanie
+        // a) Gdy nie ma dzieci - dzia³a
+        // b) Gdy jest jedno dziecko - to dziecko wchodzi w miejsce rodzica - dzia³a
+        // c) Gdy jest dwójka dzieci - to bierzemy nastêpnik - dzia³a
+        // Nastêpnik mo¿e mieæ jedno lub 0 dzieci
+        // Zamieniamy nastepnik wg a) lub b) i wstawaiamy w miejsce usuniêtego wêz³a
+
+        public int CheckChildren(Wezel4 w)
+        {
+            if(w.leweDziecko is null && w.praweDziecko is null) { return 0; }
+            if(w.rodzic is not null && w.praweDziecko is not null) { return 2; }
+            return 1;
+        }
+
+        public bool CheckIfLeftChildrenExist(Wezel4 w)
+        {
+            return w.leweDziecko is not null ? true : false;
+        }
+
+        public Wezel4  RemoveWithoutChildren(Wezel4 w)
+        {
+            Wezel4 rodzic = w.rodzic;
+            if(rodzic.leweDziecko.wartosc == w.wartosc)
+            {
+                rodzic.leweDziecko = null;
+                w.rodzic = null;
+            } 
+            else
+            {
+                rodzic.praweDziecko = null;
+                w.rodzic = null;
+            }
+            return w;
+        }
+
+        public Wezel4 RemoveOneChildren(Wezel4 w)
+        {
+            // w.GetType().GetFields().Where(f => f.Name.EndsWith("Dziecko") && f.GetValue(w) != null);
+            Wezel4 rodzic = w.rodzic;
+            Wezel4 dziecko = CheckIfLeftChildrenExist(w) ? w.leweDziecko : w.praweDziecko;
+            bool leftExist = CheckIfLeftChildrenExist(w);
+            
+            if(rodzic?.leweDziecko?.wartosc == w.wartosc)
+            {
+                rodzic.leweDziecko = dziecko;
+                dziecko.rodzic = rodzic;
+                w.rodzic = null;
+            } 
+            else
+            {
+                rodzic.praweDziecko = dziecko;
+                dziecko.rodzic = rodzic;
+                w.rodzic = null;
+            }
+
+            if (leftExist)
+                w.leweDziecko = null;
+            else
+                w.praweDziecko = null;
+
+            return w;
+        }
+
+        public Wezel4 RemoveTwoChildren(Wezel4 w)
+        {
+            Wezel4 nastepne = NastepnikZajecia(w);
+
+            Wezel4 value = Remove(nastepne);
+
+            return value;
+        }
+
+        public Wezel4 Remove(Wezel4 w)
+        {
+            Wezel4 returnValue = w;
+            int typeOperation = CheckChildren(w);
+
+            switch(typeOperation)
+            {
+                case 0: 
+                    returnValue = RemoveWithoutChildren(w); 
+                    break;
+                case 1:
+                    returnValue = RemoveOneChildren(w);
+                    break;
+                case 2:
+                    returnValue = RemoveTwoChildren(w);
+                    break;
+                default:
+                    MessageBox.Show("B³edne dane");
+                    break;
+            }
+
+            return returnValue;
         }
 
     }
