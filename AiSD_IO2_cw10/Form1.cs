@@ -244,6 +244,7 @@ namespace AiSD_IO2_cw5
             nastepnik.Add(2);
             nastepnik.Add(4);
             nastepnik.Add(1);
+            nastepnik.Add(5);
             
 
             List<Wezel4> lista = nastepnik.WypiszSzczegoloweDane();
@@ -256,7 +257,7 @@ namespace AiSD_IO2_cw5
 
             MessageBox.Show(napis);
 
-            nastepnik.Remove(nastepnik.Znajdz(4));
+            nastepnik.Remove(nastepnik.Znajdz(3));
 
             napis = "Po: \n";
             lista = nastepnik.WypiszSzczegoloweDane();
@@ -569,9 +570,9 @@ namespace AiSD_IO2_cw5
         }
 
         // Usuwanie
-        // a) Gdy nie ma dzieci - dzia³a
-        // b) Gdy jest jedno dziecko - to dziecko wchodzi w miejsce rodzica - dzia³a
-        // c) Gdy jest dwójka dzieci - to bierzemy nastêpnik - dzia³a
+        // a) Gdy nie ma dzieci
+        // b) Gdy jest jedno dziecko - to dziecko wchodzi w miejsce rodzica
+        // c) Gdy jest dwójka dzieci - to bierzemy nastêpnik
         // Nastêpnik mo¿e mieæ jedno lub 0 dzieci
         // Zamieniamy nastepnik wg a) lub b) i wstawaiamy w miejsce usuniêtego wêz³a
 
@@ -589,17 +590,24 @@ namespace AiSD_IO2_cw5
 
         public Wezel4  RemoveWithoutChildren(Wezel4 w)
         {
+            if (w.rodzic is null)
+            {
+                this.korzen = null;
+                return w;
+            }
+
             Wezel4 rodzic = w.rodzic;
             if(rodzic.leweDziecko.wartosc == w.wartosc)
             {
                 rodzic.leweDziecko = null;
-                w.rodzic = null;
             } 
             else
             {
                 rodzic.praweDziecko = null;
-                w.rodzic = null;
             }
+
+            w.rodzic = null;
+
             return w;
         }
 
@@ -631,13 +639,89 @@ namespace AiSD_IO2_cw5
             return w;
         }
 
+        Wezel4 RemoveOneChildrenZajecia(Wezel4 w)
+        {
+            Wezel4 dziecko = null;
+            if(w.leweDziecko is not null)
+            {
+                dziecko = w.leweDziecko;
+                w.leweDziecko = null;
+            } 
+            else
+            {
+                dziecko = w.praweDziecko;
+                w.praweDziecko = null;
+            }
+
+            if(w.rodzic == null)
+            {
+                this.korzen = dziecko;
+            }
+            else
+            {
+                if(w.rodzic.leweDziecko == w)
+                {
+                    w.rodzic.leweDziecko = dziecko;
+                }
+                else
+                {
+                    w.rodzic.praweDziecko = dziecko;
+                }
+                dziecko.rodzic = w.rodzic;
+                w.rodzic = null;
+            }
+
+            return default;
+        }
+
         public Wezel4 RemoveTwoChildren(Wezel4 w)
         {
             Wezel4 nastepne = NastepnikZajecia(w);
+            Wezel4 rodzic = w.rodzic;
 
-            Wezel4 value = Remove(nastepne);
+            if (w.wartosc == rodzic.leweDziecko.wartosc)
+            {
+                rodzic.leweDziecko = nastepne;
+            }
+            else
+            {
+                rodzic.praweDziecko = nastepne;
+            }
+            nastepne.leweDziecko = w.leweDziecko;
+            nastepne.rodzic = rodzic;
+            w.leweDziecko.rodzic = nastepne;
+            w.leweDziecko = null;
+            w.praweDziecko = null;
+            w.rodzic = null;
 
-            return value;
+            return w;
+        }
+
+        public Wezel4 RemoveTwoChildrenZajecia(Wezel4 w)
+        {
+            var zamiennik = this.NastepnikZajecia(w);
+            zamiennik = this.Remove(zamiennik);
+
+            if(w.rodzic is null)
+            {
+                this.korzen = zamiennik;
+            }
+            else
+            {
+                Wezel4 rodzic = w.rodzic;
+                if (rodzic.leweDziecko == w)
+                {
+                    rodzic.leweDziecko = zamiennik;
+                }
+                else
+                {
+                    rodzic.praweDziecko = zamiennik;
+                }
+
+                zamiennik.rodzic = rodzic;
+            }
+
+            return w;
         }
 
         public Wezel4 Remove(Wezel4 w)
@@ -665,6 +749,8 @@ namespace AiSD_IO2_cw5
         }
 
     }
+
+    // Algorytm Dijkstry
 
     // KLASY WÊZÊ£
     public class WezelGlowny
