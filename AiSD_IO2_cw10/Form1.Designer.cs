@@ -35,6 +35,7 @@
             findMinAndMaxValue = new Button();
             findNextAndPreviousValue = new Button();
             deleteValueFromTree = new Button();
+            DijsktraAlgorytm = new Button();
             SuspendLayout();
             // 
             // stworzwezel
@@ -107,11 +108,22 @@
             deleteValueFromTree.UseVisualStyleBackColor = true;
             deleteValueFromTree.Click += deleteValueFromTree_Click;
             // 
+            // DijsktraAlgorytm
+            // 
+            DijsktraAlgorytm.Location = new Point(309, 294);
+            DijsktraAlgorytm.Name = "DijsktraAlgorytm";
+            DijsktraAlgorytm.Size = new Size(150, 46);
+            DijsktraAlgorytm.TabIndex = 7;
+            DijsktraAlgorytm.Text = "Algorytm Dijkstry";
+            DijsktraAlgorytm.UseVisualStyleBackColor = true;
+            DijsktraAlgorytm.Click += DijsktraAlgorytm_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(DijsktraAlgorytm);
             Controls.Add(deleteValueFromTree);
             Controls.Add(findNextAndPreviousValue);
             Controls.Add(findMinAndMaxValue);
@@ -134,5 +146,6 @@
         private Button findMinAndMaxValue;
         private Button findNextAndPreviousValue;
         private Button deleteValueFromTree;
+        private Button DijsktraAlgorytm;
     }
 }

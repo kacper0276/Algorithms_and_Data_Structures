@@ -181,6 +181,11 @@ namespace AiSD_IO2_cw5
 
             MessageBox.Show(napis);
         }
+
+        private void DijsktraAlgorytm_Click(object sender, EventArgs e)
+        {
+            AlgorytmDijkstry.StartFunction();
+        }
     }
     // Algorytm Dijkstry
 
