@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace AiSD_IO2_cw5
 {
@@ -21,12 +22,24 @@ namespace AiSD_IO2_cw5
             public int wartosc;
             public List<Krawedz>? list = new();
 
-            public void AddToKrawdzList(Krawedz krawedz) { list.Add(krawedz); }
+            public void AddToKrawdzList(Krawedz krawedz) { list!.Add(krawedz); }
 
             public Wezel5(int wartosc, Krawedz krawedz)
             {
                 this.wartosc = wartosc;
                 list.Add(krawedz);
+            }
+        }
+
+        public class Graf
+        {
+            public List<Wezel5> listaWezlow;
+            public List<Krawedz> listaKrawedzi;
+
+            public Graf(List<Wezel5> listaWezlow, List<Krawedz> listaKrawedzi)
+            {
+                this.listaKrawedzi = listaKrawedzi;
+                this.listaWezlow = listaWezlow;
             }
         }
 
@@ -52,19 +65,84 @@ namespace AiSD_IO2_cw5
             return -1;
         }
 
-        public class Graf
+        public static int[,] StworzMacierzSasiedztwa(Graf graf)
         {
-            public List<Wezel5> listaWezlow;
-            public List<Krawedz> listaKrawedzi;
+            int rozmiar = graf.listaWezlow.Count;
+            int dlugoscKrawedzi = graf.listaKrawedzi.Count;
 
-            public Graf(List<Wezel5> listaWezlow, List<Krawedz> listaKrawedzi)
+            int[,] macierz = new int[rozmiar, rozmiar];
+
+            for(int i = 0; i < rozmiar; i++)
             {
-                this.listaKrawedzi = listaKrawedzi;
-                this.listaWezlow = listaWezlow;
+                for(int j = 0; j < rozmiar; j++)
+                {
+                    macierz[i, j] = 0;
+                }
             }
+
+            for(int i = 0; i < dlugoscKrawedzi; i++)
+            {
+                macierz[(int)graf.listaKrawedzi[i].poczatek!, (int)graf.listaKrawedzi[i].koniec!] = (int)graf.listaKrawedzi[i].waga!;
+            }
+
+            return macierz;
         }
 
-        
+        static int minDistance(int[] dist, bool[] sptSet, int size)
+        {
+
+            // Initialize min value
+            int min = int.MaxValue, min_index = -1;
+
+            for (int v = 0; v < size; v++)
+                if (sptSet[v] == false && dist[v] <= min)
+                {
+                    min = dist[v];
+                    min_index = v;
+                }
+                    
+            return min_index;
+        }
+
+        public static void Dijkstra(Graf graf)
+        {
+            int[,] macierz = StworzMacierzSasiedztwa(graf);
+            int size = graf.listaWezlow.Count;
+
+            int[] result = new int[size];
+            bool[] visited = new bool[size];
+
+            for (int i = 0; i < size; i++)
+            {
+                result[i] = int.MaxValue;
+                visited[i] = false;
+            }
+
+            result[0] = 0;
+
+            for (int i = 0; i < size - 1; i++)
+            {
+                int u = minDistance(result, visited, size);
+                visited[u] = true;
+
+                for(int j = 0; j < size; j++)
+                {
+                    if (!visited[j] && macierz[u, j] != 0 && result[u] != int.MaxValue && result[u] + macierz[u, j] < result[j])
+                    {
+                        result[j] = result[u] + macierz[u, j];
+                    }
+                }
+            }
+
+            string message = "";
+
+            for(int i = 0; i < size; i++) 
+            {
+                message += $"[{i}] - {result[i]} \n";
+            }
+
+            MessageBox.Show(message);
+        }
 
         public static void StartFunction()
         {
@@ -99,20 +177,21 @@ namespace AiSD_IO2_cw5
 
             foreach (var krawedz in listaKrawedzi)
             {
-               if(!FindValueInListWezel(listaWezlow, krawedz.poczatek.Value))
+               if(!FindValueInListWezel(listaWezlow, krawedz.koniec!.Value))
                 {
-                    var wezel = new Wezel5(krawedz.poczatek.Value, krawedz);
+                    var wezel = new Wezel5(krawedz.koniec.Value, krawedz);
                     listaWezlow.Add(wezel);
                 }
                else
                 {
-                    int index = ReturnIndexOfElementInListWezel(listaWezlow, krawedz.poczatek.Value);
+                    int index = ReturnIndexOfElementInListWezel(listaWezlow, krawedz.koniec.Value);
                     listaWezlow[index].AddToKrawdzList(krawedz);
                 }
             }
 
             Graf graf = new(listaWezlow, listaKrawedzi);
 
+            Dijkstra(graf);
         }
     }
 }
