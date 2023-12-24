@@ -91,7 +91,6 @@ namespace AiSD_IO2_cw5
         static int minDistance(int[] dist, bool[] sptSet, int size)
         {
 
-            // Initialize min value
             int min = int.MaxValue, min_index = -1;
 
             for (int v = 0; v < size; v++)
