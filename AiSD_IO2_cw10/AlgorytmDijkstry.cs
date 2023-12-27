@@ -110,6 +110,7 @@ namespace AiSD_IO2_cw5
 
             int[] result = new int[size];
             bool[] visited = new bool[size];
+            string[] resultVisited = new string[size];
 
             for (int i = 0; i < size; i++)
             {
@@ -129,6 +130,7 @@ namespace AiSD_IO2_cw5
                     if (!visited[j] && macierz[u, j] != 0 && result[u] != int.MaxValue && result[u] + macierz[u, j] < result[j])
                     {
                         result[j] = result[u] + macierz[u, j];
+                        resultVisited[j] += $"{macierz[u, j]}, ";
                     }
                 }
             }
@@ -137,7 +139,8 @@ namespace AiSD_IO2_cw5
 
             for(int i = 0; i < size; i++) 
             {
-                message += $"[{i}] - {result[i]} \n";
+                message += $"[{i}] - {result[i]} ; ";
+                message += $"Sąsiedzi: {resultVisited[i]} \n";
             }
 
             MessageBox.Show(message);
