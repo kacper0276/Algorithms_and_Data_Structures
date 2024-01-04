@@ -130,7 +130,7 @@ namespace AiSD_IO2_cw5
                     if (!visited[j] && macierz[u, j] != 0 && result[u] != int.MaxValue && result[u] + macierz[u, j] < result[j])
                     {
                         result[j] = result[u] + macierz[u, j];
-                        resultVisited[j] = $"{macierz[u, j]}, ";
+                        resultVisited[j] += $"{u}, ";
                     }
                 }
             }
@@ -140,7 +140,7 @@ namespace AiSD_IO2_cw5
             for(int i = 0; i < size; i++) 
             {
                 message += $"[{i}] - {result[i]} ; ";
-                message += $"Sąsiedzi: {resultVisited[i]} \n";
+                message += $"Ostatni: {resultVisited[i]} \n";
             }
 
             MessageBox.Show(message);

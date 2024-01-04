@@ -36,6 +36,7 @@
             findNextAndPreviousValue = new Button();
             deleteValueFromTree = new Button();
             DijsktraAlgorytm = new Button();
+            algorytmKruskala = new Button();
             SuspendLayout();
             // 
             // stworzwezel
@@ -118,11 +119,22 @@
             DijsktraAlgorytm.UseVisualStyleBackColor = true;
             DijsktraAlgorytm.Click += DijsktraAlgorytm_Click;
             // 
+            // algorytmKruskala
+            // 
+            algorytmKruskala.Location = new Point(526, 294);
+            algorytmKruskala.Name = "algorytmKruskala";
+            algorytmKruskala.Size = new Size(150, 46);
+            algorytmKruskala.TabIndex = 8;
+            algorytmKruskala.Text = "Algorytm Kruskala";
+            algorytmKruskala.UseVisualStyleBackColor = true;
+            algorytmKruskala.Click += algorytmKruskala_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(algorytmKruskala);
             Controls.Add(DijsktraAlgorytm);
             Controls.Add(deleteValueFromTree);
             Controls.Add(findNextAndPreviousValue);
@@ -147,5 +159,6 @@
         private Button findNextAndPreviousValue;
         private Button deleteValueFromTree;
         private Button DijsktraAlgorytm;
+        private Button algorytmKruskala;
     }
 }
