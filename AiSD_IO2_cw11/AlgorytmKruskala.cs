@@ -40,6 +40,11 @@
                 this.listaKrawedzi = listaKrawedzi;
             }
 
+            public Graf(Krawedz krawedz)
+            {
+                this.listaKrawedzi!.Add(krawedz);
+            }
+
             public int Sprawdz(Krawedz k)
             {
                 int r = 0;
@@ -56,32 +61,48 @@
             }
 
             public void Add(Krawedz k)
-            {
-                this.listaKrawedzi.Add(k);
+            {   
+                int wynik = this.Sprawdz(k);
 
-                if(!listaWezlow.Contains(k.poczatek))
+                switch(wynik)
                 {
-                    this.listaWezlow.Add(k.poczatek);
-                }
+                    case 0:
+                        break;
+                    case 1:
 
-                if (!listaWezlow.Contains(k.koniec))
-                {
-                    this.listaWezlow.Add(k.koniec);
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        MessageBox.Show("Błąd Aplikacji!");
+                        break;
                 }
-
             }
 
             public void Join(Graf g)
             {
                 foreach(var k in g.listaKrawedzi)
                 {
-                    Add(k);
+                    this.Add(k);
                 }
             }
 
-            public Graf AlgKruskala()
+            public Graf AlgKruskala(List<Krawedz> listaKrawedzi)
             {
-                return default;
+                this.listaKrawedzi.Add(listaKrawedzi[0]);
+                listaWezlow.Add(listaKrawedzi[0].poczatek);
+                listaWezlow.Add(listaKrawedzi[0].koniec);
+                List<Graf> listaGrafow = new()
+                {
+                    this
+                };
+
+                for (int i = 1; i < listaKrawedzi.Count; i++)
+                {
+
+                }
+
+                return this;
             }
         }
 
@@ -122,15 +143,17 @@
             listaKrawedzi.Add(k15);
             listaKrawedzi.Add(k16);
 
-            var wynik = listaKrawedzi.OrderByDescending(k => k.waga);
+            var wynik = listaKrawedzi.OrderBy(k => k.waga);
 
-            return (List<Krawedz>)wynik;
+            return wynik.ToList();
         }
         
         public static void StartFunction()
         {
             List<Krawedz> listaKrawedzi = StworzKrawedzie();
-            Graf g0 = new();
+            Graf g0 = new Graf().AlgKruskala(listaKrawedzi);
+
+            
         }
     }
 }
