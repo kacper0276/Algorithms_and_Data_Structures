@@ -30,8 +30,9 @@
 
         public class Graf
         {
-            public List<int> listaWezlow;
-            public List<Krawedz> listaKrawedzi;
+            public List<int> listaWezlow = new();
+            public List<Krawedz> listaKrawedzi = new();
+            public List<Graf> listaGrafow = new();
 
             public Graf() {}
 
@@ -48,11 +49,11 @@
             public int Sprawdz(Krawedz k)
             {
                 int r = 0;
-                if (this.listaWezlow.Contains(k.poczatek))
+                if (!this.listaWezlow.Contains(k.poczatek))
                 {
                     r++;
                 }
-                if (this.listaWezlow.Contains(k.koniec))
+                if (!this.listaWezlow.Contains(k.koniec))
                 {
                     r++;
                 }
@@ -61,17 +62,48 @@
             }
 
             public void Add(Krawedz k)
-            {   
+            {
                 int wynik = this.Sprawdz(k);
 
-                switch(wynik)
+                switch (wynik)
                 {
                     case 0:
                         break;
                     case 1:
+                        List<Graf> list = new();
 
+                        foreach (var g in this.listaGrafow)
+                        {
+                            int res = g.Sprawdz(k);
+                            if (res == 1)
+                            {
+                                list.Add(g);
+                            }
+                        }
+
+                        if(list.Count == 0)
+                        {
+                            this.listaKrawedzi.Add(k);
+                            if (!this.listaWezlow.Contains(k.poczatek))
+                            {
+                                this.listaWezlow.Add(k.poczatek);
+                            }
+                            else
+                            {
+                                this.listaWezlow.Add(k.koniec);
+                            }
+                        } 
+                        else
+                        {
+                            this.Join(list[0]);
+                            this.listaGrafow.Remove(list[0]);
+                        }
                         break;
                     case 2:
+                        Graf graf = new Graf(k);
+                        graf.listaWezlow.Add(k.poczatek);
+                        graf.listaWezlow.Add(k.koniec);
+                        listaGrafow.Add(graf);
                         break;
                     default:
                         MessageBox.Show("Błąd Aplikacji!");
@@ -87,19 +119,18 @@
                 }
             }
 
-            public Graf AlgKruskala(List<Krawedz> listaKrawedzi)
+
+
+            public Graf AlgKruskala(List<Krawedz> listKrawedzi)
             {
-                this.listaKrawedzi.Add(listaKrawedzi[0]);
-                listaWezlow.Add(listaKrawedzi[0].poczatek);
-                listaWezlow.Add(listaKrawedzi[0].koniec);
-                List<Graf> listaGrafow = new()
+                this.listaKrawedzi.Add(listKrawedzi[0]);
+                listaWezlow.Add(listKrawedzi[0].poczatek);
+                listaWezlow.Add(listKrawedzi[0].koniec);
+                listaGrafow.Add(this);
+                
+                for (int i = 1; i < listKrawedzi.Count; i++)
                 {
-                    this
-                };
-
-                for (int i = 1; i < listaKrawedzi.Count; i++)
-                {
-
+                    this.Add(listKrawedzi[i]);
                 }
 
                 return this;
@@ -153,7 +184,13 @@
             List<Krawedz> listaKrawedzi = StworzKrawedzie();
             Graf g0 = new Graf().AlgKruskala(listaKrawedzi);
 
-            
+            string result = "";
+            foreach(var g in g0.listaKrawedzi)
+            {
+                result += $"Start: {g.poczatek} - Koniec: {g.koniec} \n";
+            }
+
+            MessageBox.Show(result);
         }
     }
 }
