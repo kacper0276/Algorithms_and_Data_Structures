@@ -72,12 +72,12 @@
                     case 1:
                         List<Graf> list = new();
 
-                        foreach (var g in this.listaGrafow)
+                        for(int i = 1; i < this.listaGrafow.Count; i++)
                         {
-                            int res = g.Sprawdz(k);
+                            int res = this.listaGrafow[i].Sprawdz(k);
                             if (res == 1)
                             {
-                                list.Add(g);
+                                list.Add(this.listaGrafow[i]);
                             }
                         }
 
@@ -96,6 +96,7 @@
                         else
                         {
                             this.Join(list[0]);
+                            this.listaKrawedzi.Add(k);
                             this.listaGrafow.Remove(list[0]);
                         }
                         break;
@@ -115,7 +116,11 @@
             {
                 foreach(var k in g.listaKrawedzi)
                 {
-                    this.Add(k);
+                    this.listaKrawedzi.Add(k);
+                    if (!this.listaWezlow.Contains(k.poczatek))
+                        this.listaWezlow.Add(k.poczatek);
+                    if (!this.listaWezlow.Contains(k.koniec))
+                        this.listaWezlow.Add(k.koniec);
                 }
             }
 
