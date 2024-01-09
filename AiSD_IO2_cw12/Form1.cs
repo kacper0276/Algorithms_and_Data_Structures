@@ -191,6 +191,11 @@ namespace AiSD_IO2_cw5
         {
             AlgorytmKruskala.StartFunction();
         }
+
+        private void NWPButton_Click(object sender, EventArgs e)
+        {
+            NWP.StartFunction();
+        }
     }
     // Algorytm Dijkstry
 

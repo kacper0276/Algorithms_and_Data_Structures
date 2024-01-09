@@ -37,6 +37,7 @@
             deleteValueFromTree = new Button();
             DijsktraAlgorytm = new Button();
             algorytmKruskala = new Button();
+            NWPButton = new Button();
             SuspendLayout();
             // 
             // stworzwezel
@@ -129,11 +130,22 @@
             algorytmKruskala.UseVisualStyleBackColor = true;
             algorytmKruskala.Click += algorytmKruskala_Click;
             // 
+            // NWPButton
+            // 
+            NWPButton.Location = new Point(89, 392);
+            NWPButton.Name = "NWPButton";
+            NWPButton.Size = new Size(150, 46);
+            NWPButton.TabIndex = 9;
+            NWPButton.Text = "NWP";
+            NWPButton.UseVisualStyleBackColor = true;
+            NWPButton.Click += NWPButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(NWPButton);
             Controls.Add(algorytmKruskala);
             Controls.Add(DijsktraAlgorytm);
             Controls.Add(deleteValueFromTree);
@@ -160,5 +172,6 @@
         private Button deleteValueFromTree;
         private Button DijsktraAlgorytm;
         private Button algorytmKruskala;
+        private Button NWPButton;
     }
 }
