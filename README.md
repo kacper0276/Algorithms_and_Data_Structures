@@ -29,12 +29,12 @@ To set up the project locally:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/Algorithms-Data-Structures-CSharp.git
+    git clone https://github.com/yourusername/Algorithms_and_Data_Structures.git
     ```
 
 2. **Navigate to the project directory**:
     ```bash
-    cd Algorithms-Data-Structures-CSharp
+    cd Algorithms_and_Data_Structures
     ```
 
 3. **Open the project in Visual Studio**:
@@ -53,7 +53,3 @@ To set up the project locally:
 ## Configuration
 
 - **Adjust Settings**: If needed, modify settings or configurations in the project files based on specific requirements or preferences.
-
-## Contributing
-
-Contributions are welcome! If you would like to contribute, please fork the repository and create a pull request. Ensure that you follow the contribution guidelines and coding standards outlined in the project's documentation.
