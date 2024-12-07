@@ -49,7 +49,3 @@ To set up the project locally:
       ```bash
       dotnet run
       ```
-
-## Configuration
-
-- **Adjust Settings**: If needed, modify settings or configurations in the project files based on specific requirements or preferences.
